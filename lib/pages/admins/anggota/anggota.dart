@@ -7,8 +7,6 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
-import 'package:toggle_switch/toggle_switch.dart';
 
 import '../../../services/apiservices.dart';
 import '../../../widgets/loadingindicator.dart';
@@ -84,12 +82,10 @@ class _AdminAnggotaControllerState extends State<AdminAnggotaController> {
                           controllerPageRole: _controllerPageRole,
                           controllerPageBuatRole: _controllerPageBuatRole,
                           controllerPageEditRole: _controllerPageEditRole,
-                          controllerPageDetailRole:
-                              _controllerPageDetailRole,
+                          controllerPageDetailRole: _controllerPageDetailRole,
                         ),
                         AdminDetailRole(
-                            controllerPageDetailRole:
-                                _controllerPageDetailRole)
+                            controllerPageDetailRole: _controllerPageDetailRole)
                       ],
                     ),
                     AdminBuatRole(
@@ -131,6 +127,7 @@ class _AdminAnggotaPageState extends State<AdminAnggotaPage> {
   late Future listUser;
 
   final _controllerSearch = TextEditingController();
+
   @override
   void initState() {
     // TODO: implement initState
@@ -141,6 +138,9 @@ class _AdminAnggotaPageState extends State<AdminAnggotaPage> {
   @override
   void dispose() {
     // TODO: implement dispose
+    _controllerNamaTambahMember.dispose();
+    _controllerEmailTambahMember.dispose();
+    _controllerTelpTambahMember.dispose();
     _controllerSearch.dispose();
     super.dispose();
   }
@@ -240,8 +240,8 @@ class _AdminAnggotaPageState extends State<AdminAnggotaPage> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  responsiveText(
-                                      "Nama Member", 16, FontWeight.w700, darkText),
+                                  responsiveText("Nama Member", 16,
+                                      FontWeight.w700, darkText),
                                   const SizedBox(
                                     height: 10,
                                   ),
@@ -257,7 +257,7 @@ class _AdminAnggotaPageState extends State<AdminAnggotaPage> {
                                   ),
                                   responsiveTextField(
                                       dw, dh, _controllerEmailTambahMember),
-                                      const SizedBox(
+                                  const SizedBox(
                                     height: 15,
                                   ),
                                   responsiveText("Nomor Telepon Member", 16,
@@ -411,7 +411,9 @@ class _AdminAnggotaPageState extends State<AdminAnggotaPage> {
                           ],
                         ),
                       ),
-                      SizedBox(width: 10,),
+                      const SizedBox(
+                        width: 10,
+                      ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.symmetric(
@@ -1285,8 +1287,7 @@ class _AdminBuatRoleState extends State<AdminBuatRole> {
                                             }
                                           }
                                           return FittedBox(
-                                            child: loadingIndicator(
-                                                ),
+                                            child: loadingIndicator(),
                                           );
                                         },
                                       ),
@@ -1316,7 +1317,6 @@ class _AdminBuatRoleState extends State<AdminBuatRole> {
     );
   }
 }
-
 
 class AdminDetailRole extends StatefulWidget {
   final PageController controllerPageDetailRole;
@@ -1603,8 +1603,7 @@ class _AdminDetailRoleState extends State<AdminDetailRole> {
                                             }
                                           }
                                           return FittedBox(
-                                            child: loadingIndicator(
-                                                ),
+                                            child: loadingIndicator(),
                                           );
                                         },
                                       ),
